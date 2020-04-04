@@ -183,14 +183,12 @@ def main(argv):
       logging.info('Finished testing on %s', format(name))
 
   metrics = {
-      'test/ece': ed.metrics.ExpectedCalibrationError(num_classes=num_classes,
-                                                      num_bins=15)
+      'test/ece': ed.metrics.ExpectedCalibrationError(num_bins=15)
   }
   corrupt_metrics = {}
   for name in test_datasets:
     corrupt_metrics['test/ece_{}'.format(
-        name)] = ed.metrics.ExpectedCalibrationError(
-            num_classes=num_classes, num_bins=15)
+        name)] = ed.metrics.ExpectedCalibrationError(num_bins=15)
     corrupt_metrics['test/nll_{}'.format(name)] = tf.keras.metrics.Mean()
     corrupt_metrics['test/accuracy_{}'.format(name)] = tf.keras.metrics.Mean()
 
